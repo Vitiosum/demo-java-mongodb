@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#13172e">
+<meta name="description" content="A planisphere of the sky over Paris where every celestial object is a MongoDB document. Java, Spring Boot and MongoDB on Clever Cloud.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/cc-brand.css">
+<link rel="stylesheet" href="/sky.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 101 116'%3E%3Cpolygon fill='%23AB2B4A' points='100.423 29.134 100.423 86.868 89.721 73.062 83.76 58.003 83.756 58.003 89.418 42.731'/%3E%3Cpolygon fill='%23E87A68' points='.429 29.134 .429 86.868 9.889 73.481 17.092 58.003 17.096 58.003 9.773 43.319'/%3E%3Cpolygon fill='%23D74D4E' points='83.756 58.003 52.241 60.003 17.092 58.003 31.76 29.134 50.426 .269 70.722 31.961'/%3E%3Cpolygon fill='%23BD3246' points='100.423 29.134 83.756 58.003 50.426 .269'/%3E%3Cpolygon fill='%23F19175' points='50.426 .269 17.092 58.003 .425 29.134'/%3E%3Cpolygon fill='%23CF3942' points='83.756 58.003 72.365 82.931 50.426 115.737 27.849 81.83 17.092 58.003'/%3E%3Cpolygon fill='%23E0625B' points='50.426 115.737 .425 86.868 17.092 58.003'/%3E%3Cpolygon fill='%239A244F' points='50.422 115.737 100.423 86.868 83.756 58.003'/%3E%3C/svg%3E">
+<title>The Observatory, Java and MongoDB on Clever Cloud</title>
+<script src="/app.js" defer></script>
+</head>
+<body>
+
+<header class="cc-topbar">
+  <div class="cc-container cc-topbar__inner">
+    <a href="https://www.clever.cloud" target="_blank" rel="noopener" aria-label="Clever Cloud">
+<svg class="cc-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 116" role="img" aria-label="Clever Cloud">
+  <g fill="none">
+        <g fill="currentColor" transform="translate(129 35)">
+      <path d="M15.241,18.87 C10.52,18.87 7.335,22.47 7.335,27.013 C7.335,31.556 10.58,35.215 15.183,35.215 C18.074,35.215 20.375,34.212 22.145,32.442 L25.804,37.753 C23.562,40.232 19.49,42.002 15.005,42.002 C6.627,42.002 0.136,35.275 0.136,27.073 C0.136,18.812 6.627,12.086 14.888,12.086 C19.726,12.086 23.562,13.738 26.039,16.335 L21.909,21.468 C20.139,19.755 18.015,18.87 15.241,18.87 Z"/>
+      <polygon points="31.229 .578 38.428 .578 38.428 41.174 31.229 41.174"/>
+      <path d="M44.976,27.072 C44.976,18.811 51.112,12.085 59.255,12.085 C67.339,12.085 73.475,18.339 73.475,26.482 C73.475,27.367 73.416,28.37 73.298,28.842 L52.351,28.842 C53.059,32.795 56.069,35.628 60.435,35.628 C63.267,35.628 65.687,34.389 67.339,32.678 L71.056,37.575 C68.932,40.053 64.919,42 60.14,42 C51.348,42 44.976,35.274 44.976,27.072 Z M52.469,24.299 L66.1,24.299 C65.274,20.286 62.737,18.221 59.373,18.221 C55.773,18.221 53.295,20.699 52.469,24.299 Z"/>
+      <polygon points="104.864 12.911 94.656 41.175 85.333 41.175 75.065 12.911 82.972 12.911 90.17 34.743 97.487 12.911"/>
+      <path d="M106.867 27.072C106.867 18.811 113.003 12.085 121.146 12.085 129.23 12.085 135.366 18.339 135.366 26.482 135.366 27.367 135.307 28.37 135.189 28.842L114.242 28.842C114.95 32.795 117.96 35.628 122.326 35.628 125.158 35.628 127.578 34.389 129.23 32.678L132.947 37.575C130.823 40.053 126.81 42 122.031 42 113.239 42 106.867 35.274 106.867 27.072zM114.36 24.299L127.991 24.299C127.165 20.286 124.628 18.221 121.264 18.221 117.665 18.221 115.187 20.699 114.36 24.299zM148.758 41.174L141.56 41.174 141.56 12.91 148.758 12.91 148.758 15.978C150.351 13.618 152.711 12.083 155.661 12.083 157.55 12.083 159.084 12.614 160.205 13.499L157.195 20.344C156.252 19.577 154.836 19.105 153.478 19.105 150.586 19.105 148.757 21.524 148.757 25.36L148.757 41.174 148.758 41.174zM191.415 18.87C186.694 18.87 183.508 22.47 183.508 27.013 183.508 31.556 186.753 35.215 191.356 35.215 194.248 35.215 196.548 34.212 198.319 32.442L201.977 37.753C199.735 40.232 195.664 42.002 191.179 42.002 182.8 42.002 176.31 35.275 176.31 27.073 176.31 18.812 182.8 12.086 191.061 12.086 195.9 12.086 199.735 13.738 202.213 16.335L198.082 21.468C196.312 19.755 194.188 18.87 191.415 18.87z"/>
+      <polygon points="207.402 .578 214.6 .578 214.6 41.174 207.402 41.174"/>
+      <path d="M221.148 27.072C221.148 18.811 227.639 12.085 235.84 12.085 244.042 12.085 250.592 18.812 250.592 27.072 250.592 35.274 244.042 42.001 235.84 42.001 227.64 42 221.148 35.274 221.148 27.072zM243.335 27.013C243.335 22.47 240.207 18.87 235.9 18.87 231.533 18.87 228.347 22.47 228.347 27.013 228.347 31.556 231.533 35.215 235.9 35.215 240.207 35.215 243.335 31.556 243.335 27.013zM263.924 28.193C263.924 32.323 266.343 35.097 269.943 35.097 273.542 35.097 275.962 32.324 275.962 28.193L275.962 12.911 283.16 12.911 283.16 28.724C283.16 36.631 277.909 41.882 269.943 41.882 261.977 41.882 256.725 36.631 256.725 28.724L256.725 12.911 263.924 12.911 263.924 28.193zM318.795.578L318.795 41.174 311.537 41.174 311.537 38.106C309.472 40.525 306.58 42.001 302.922 42.001 295.429 42.001 289.351 35.864 289.351 27.072 289.351 18.516 295.075 12.085 302.922 12.085 306.64 12.085 309.53 13.442 311.537 15.743L311.537.578 318.795.578zM311.537 27.013C311.537 22.47 308.409 18.87 304.102 18.87 299.735 18.87 296.549 22.47 296.549 27.013 296.549 31.556 299.735 35.215 304.102 35.215 308.409 35.215 311.537 31.556 311.537 27.013z"/>
+    </g>
+    <polygon fill="#AB2B4A" points="100.423 29.134 100.423 86.868 89.721 73.062 83.76 58.003 83.756 58.003 89.418 42.731"/><polygon fill="#E87A68" points=".429 29.134 .429 86.868 9.889 73.481 17.092 58.003 17.096 58.003 9.773 43.319"/><polygon fill="#D74D4E" points="83.756 58.003 52.241 60.003 17.092 58.003 31.76 29.134 50.426 .269 70.722 31.961"/><polygon fill="#BD3246" points="100.423 29.134 83.756 58.003 50.426 .269"/><polygon fill="#F19175" points="50.426 .269 17.092 58.003 .425 29.134"/><polygon fill="#CF3942" points="83.756 58.003 72.365 82.931 50.426 115.737 27.849 81.83 17.092 58.003"/><polygon fill="#E0625B" points="50.426 115.737 .425 86.868 17.092 58.003"/><polygon fill="#9A244F" points="50.422 115.737 100.423 86.868 83.756 58.003"/>
+  </g>
+</svg>
+    </a>
+    <span class="cc-topbar__sep"></span>
+    <div class="cc-topbar__demo"><small>Demo</small>The Observatory</div>
+    <span class="cc-topbar__spacer"></span>
+    <nav class="cc-topbar__nav" aria-label="Status">
+      <span class="cc-pill cc-pill--mono cc-hide-sm" id="versions">Java · Spring Boot · MongoDB</span>
+      <span class="cc-pill cc-pill--live" id="live"><span class="cc-dot"></span><span id="live-label">Live on Clever Cloud</span></span>
+      <a class="cc-pill cc-pill--gradient" href="https://academy.clever.cloud/" target="_blank" rel="noopener">Get certified</a>
+    </nav>
+  </div>
+</header>
+
+<main class="obs">
+  <section class="cc-container obs-intro">
+    <h1 class="obs-title">The Observatory</h1>
+    <p class="obs-lede">The sky over Paris, where this app runs. Every star, planet, comet, nebula and constellation on the chart is one document in a MongoDB collection, and each kind of object keeps its own shape.</p>
+  </section>
+
+  <section class="cc-container obs-bench">
+    <figure class="obs-instrument">
+      <div class="obs-chart-wrap" id="chart-wrap">
+        <svg id="chart" viewBox="0 0 1000 1000" role="img" aria-labelledby="chart-title">
+          <title id="chart-title">Planisphere of the sky over Paris</title>
+        </svg>
+        <p class="obs-pick-hint" id="pick-hint" hidden>Click the sky to place your discovery</p>
+      </div>
+      <figcaption class="obs-dial">
+        <label class="obs-dial__turn">
+          <span>Turn the sky</span>
+          <input id="hours" type="range" min="-12" max="12" step="0.25" value="0" aria-describedby="clock">
+        </label>
+        <output class="obs-dial__clock" id="clock" for="hours">Paris</output>
+        <button class="obs-link" id="now" type="button" hidden>Back to now</button>
+        <label class="obs-switch"><input type="checkbox" id="whole"> <span>Lift the horizon</span></label>
+      </figcaption>
+    </figure>
+
+    <aside class="obs-log" aria-labelledby="ask-title">
+      <h2 class="obs-h2" id="ask-title">Ask the sky</h2>
+      <p class="obs-note">Each question runs a real <code>find()</code> on the <code>sky</code> collection.</p>
+      <form class="obs-ask" id="ask">
+        <input class="obs-ask__input" id="q" name="q" autocomplete="off" spellcheck="false" maxlength="160"
+               placeholder="magnitude &lt; 2 and in constellation Orion" aria-label="Query the sky">
+        <button class="obs-ask__go" type="submit">Run</button>
+      </form>
+      <div class="obs-chips" id="chips" aria-label="Example queries">
+        <button type="button" data-q="type = planet">type = planet</button>
+        <button type="button" data-q="magnitude &lt; 2">magnitude &lt; 2</button>
+        <button type="button" data-q="has moons">has moons</button>
+        <button type="button" data-q="in constellation Orion">in constellation Orion</button>
+        <button type="button" data-q="galaxies and distance &gt; 20000000">galaxies and distance &gt; 20000000</button>
+        <button type="button" data-q="has variability">has variability</button>
+        <button type="button" data-q="class = M">class = M</button>
+        <button type="button" data-q="discoveries">discoveries</button>
+      </div>
+      <div class="obs-answer" id="answer" aria-live="polite">
+        <div class="obs-answer__cmd">
+          <pre class="obs-code" id="filter"><span class="j-fn">db</span>.sky.<span class="j-fn">find</span>({})</pre>
+        </div>
+        <p class="obs-stats" id="stats">Pick an example or type a question.</p>
+        <ol class="obs-results" id="results"></ol>
+        <button class="obs-link" id="clear" type="button" hidden>Show the whole catalogue again</button>
+      </div>
+    </aside>
+  </section>
+
+  <section class="cc-container obs-section" aria-labelledby="comets-title">
+    <div class="obs-section__head">
+      <h2 class="obs-h2" id="comets-title">Periodic comets</h2>
+      <p class="obs-note">Comets move too fast for a star chart. Their documents hold an orbital period and a last perihelion, so the page can tell when each one comes back.</p>
+    </div>
+    <div class="obs-comets" id="comets"></div>
+  </section>
+
+  <section class="cc-container obs-section obs-pair">
+    <div class="obs-discover" aria-labelledby="discover-title">
+      <h2 class="obs-h2" id="discover-title">Log a discovery</h2>
+      <p class="obs-note">Each kind of object has its own fields. The server checks them, then inserts a document with exactly that shape.</p>
+      <form id="discover" novalidate>
+        <fieldset class="obs-kinds">
+          <legend>Kind of object</legend>
+          <label><input type="radio" name="type" value="star" checked> Star</label>
+          <label><input type="radio" name="type" value="planet"> Planet</label>
+          <label><input type="radio" name="type" value="comet"> Comet</label>
+          <label><input type="radio" name="type" value="nebula"> Nebula</label>
+        </fieldset>
+        <div class="obs-fields">
+          <label class="obs-field obs-field--wide"><span>Name</span><input name="name" maxlength="40" required placeholder="Lucie's Star"><small data-error="name"></small></label>
+
+          <label class="obs-field" data-for="star"><span>Magnitude</span><input name="magnitude" type="number" step="0.01" placeholder="3.2"><small data-error="magnitude"></small></label>
+          <label class="obs-field" data-for="star"><span>Spectral class</span><input name="spectralClass" placeholder="G2 V"><small data-error="spectralClass"></small></label>
+          <label class="obs-field" data-for="star"><span>Distance (light years)</span><input name="distanceLy" type="number" step="any" placeholder="120"><small data-error="distanceLy"></small></label>
+
+          <label class="obs-field obs-field--wide" data-for="planet"><span>Moons, separated by commas</span><input name="moons" placeholder="Nyx, Selene"><small data-error="moons"></small></label>
+          <label class="obs-field obs-check" data-for="planet"><input name="rings" type="checkbox"> <span>It has rings</span></label>
+
+          <label class="obs-field" data-for="comet"><span>Orbital period (years)</span><input name="orbitalPeriodYears" type="number" step="any" placeholder="12.5"><small data-error="orbitalPeriodYears"></small></label>
+          <label class="obs-field" data-for="comet"><span>Last perihelion</span><input name="lastPerihelion" type="date"><small data-error="lastPerihelion"></small></label>
+
+          <label class="obs-field" data-for="nebula"><span>Nebula type</span>
+            <select name="nebulaType">
+              <option value="emission">emission</option>
+              <option value="reflection">reflection</option>
+              <option value="planetary">planetary</option>
+              <option value="dark">dark</option>
+              <option value="supernova remnant">supernova remnant</option>
+            </select><small data-error="nebulaType"></small></label>
+
+          <div class="obs-field obs-field--wide obs-position" data-for="star planet nebula">
+            <span>Position</span>
+            <div class="obs-position__row">
+              <label><abbr title="Right ascension, in hours">RA</abbr> <input name="ra" type="number" step="0.01" min="0" max="24" placeholder="h"></label>
+              <label><abbr title="Declination, in degrees">Dec</abbr> <input name="dec" type="number" step="0.1" min="-90" max="90" placeholder="°"></label>
+              <button class="obs-link" type="button" id="pick">Pick on the chart</button>
+            </div>
+            <small data-error="ra"></small><small data-error="dec"></small>
+          </div>
+          <label class="obs-field obs-field--wide"><span>Your name, if you want it on record</span><input name="observer" maxlength="30" placeholder="Optional"><small data-error="observer"></small></label>
+        </div>
+        <p class="obs-form-error" id="discover-error" role="alert" hidden></p>
+        <button class="cc-btn obs-insert" type="submit">Insert the document</button>
+      </form>
+      <div class="obs-inserted" id="inserted" hidden>
+        <p class="obs-stats" id="inserted-stats"></p>
+        <pre class="obs-code" id="inserted-doc"></pre>
+      </div>
+    </div>
+
+    <div class="obs-census" aria-labelledby="census-title">
+      <h2 class="obs-h2" id="census-title">Census of the catalogue</h2>
+      <p class="obs-note">One aggregation pipeline counts the documents of each type.</p>
+      <pre class="obs-code" id="census-pipeline"></pre>
+      <ul class="obs-tally" id="census"></ul>
+      <p class="obs-stats" id="census-stats"></p>
+    </div>
+  </section>
+
+  <section class="cc-container obs-section">
+    <div class="cc-platform obs-platform">
+      <div class="cc-platform__head">
+        <h3>Running on Clever Cloud</h3>
+        <span class="cc-pill cc-pill--ok" id="platform-pill"><span class="cc-dot"></span>Production</span>
+      </div>
+      <dl class="cc-kv" id="platform"></dl>
+      <div class="cc-platform__foot">Variables injected by the platform at deploy time. <a href="https://www.clever.cloud/developers/doc/develop/common-configuration/environment-variables/" target="_blank" rel="noopener">Reference</a>.</div>
+    </div>
+  </section>
+</main>
+
+<footer class="cc-footer">
+  <div class="cc-container">
+    <div class="cc-footer__inner">
+      <div class="cc-footer__brand">
+<svg class="cc-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 116" role="img" aria-label="Clever Cloud">
+  <g fill="none">
+        <g fill="currentColor" transform="translate(129 35)">
+      <path d="M15.241,18.87 C10.52,18.87 7.335,22.47 7.335,27.013 C7.335,31.556 10.58,35.215 15.183,35.215 C18.074,35.215 20.375,34.212 22.145,32.442 L25.804,37.753 C23.562,40.232 19.49,42.002 15.005,42.002 C6.627,42.002 0.136,35.275 0.136,27.073 C0.136,18.812 6.627,12.086 14.888,12.086 C19.726,12.086 23.562,13.738 26.039,16.335 L21.909,21.468 C20.139,19.755 18.015,18.87 15.241,18.87 Z"/>
+      <polygon points="31.229 .578 38.428 .578 38.428 41.174 31.229 41.174"/>
+      <path d="M44.976,27.072 C44.976,18.811 51.112,12.085 59.255,12.085 C67.339,12.085 73.475,18.339 73.475,26.482 C73.475,27.367 73.416,28.37 73.298,28.842 L52.351,28.842 C53.059,32.795 56.069,35.628 60.435,35.628 C63.267,35.628 65.687,34.389 67.339,32.678 L71.056,37.575 C68.932,40.053 64.919,42 60.14,42 C51.348,42 44.976,35.274 44.976,27.072 Z M52.469,24.299 L66.1,24.299 C65.274,20.286 62.737,18.221 59.373,18.221 C55.773,18.221 53.295,20.699 52.469,24.299 Z"/>
+      <polygon points="104.864 12.911 94.656 41.175 85.333 41.175 75.065 12.911 82.972 12.911 90.17 34.743 97.487 12.911"/>
+      <path d="M106.867 27.072C106.867 18.811 113.003 12.085 121.146 12.085 129.23 12.085 135.366 18.339 135.366 26.482 135.366 27.367 135.307 28.37 135.189 28.842L114.242 28.842C114.95 32.795 117.96 35.628 122.326 35.628 125.158 35.628 127.578 34.389 129.23 32.678L132.947 37.575C130.823 40.053 126.81 42 122.031 42 113.239 42 106.867 35.274 106.867 27.072zM114.36 24.299L127.991 24.299C127.165 20.286 124.628 18.221 121.264 18.221 117.665 18.221 115.187 20.699 114.36 24.299zM148.758 41.174L141.56 41.174 141.56 12.91 148.758 12.91 148.758 15.978C150.351 13.618 152.711 12.083 155.661 12.083 157.55 12.083 159.084 12.614 160.205 13.499L157.195 20.344C156.252 19.577 154.836 19.105 153.478 19.105 150.586 19.105 148.757 21.524 148.757 25.36L148.757 41.174 148.758 41.174zM191.415 18.87C186.694 18.87 183.508 22.47 183.508 27.013 183.508 31.556 186.753 35.215 191.356 35.215 194.248 35.215 196.548 34.212 198.319 32.442L201.977 37.753C199.735 40.232 195.664 42.002 191.179 42.002 182.8 42.002 176.31 35.275 176.31 27.073 176.31 18.812 182.8 12.086 191.061 12.086 195.9 12.086 199.735 13.738 202.213 16.335L198.082 21.468C196.312 19.755 194.188 18.87 191.415 18.87z"/>
+      <polygon points="207.402 .578 214.6 .578 214.6 41.174 207.402 41.174"/>
+      <path d="M221.148 27.072C221.148 18.811 227.639 12.085 235.84 12.085 244.042 12.085 250.592 18.812 250.592 27.072 250.592 35.274 244.042 42.001 235.84 42.001 227.64 42 221.148 35.274 221.148 27.072zM243.335 27.013C243.335 22.47 240.207 18.87 235.9 18.87 231.533 18.87 228.347 22.47 228.347 27.013 228.347 31.556 231.533 35.215 235.9 35.215 240.207 35.215 243.335 31.556 243.335 27.013zM263.924 28.193C263.924 32.323 266.343 35.097 269.943 35.097 273.542 35.097 275.962 32.324 275.962 28.193L275.962 12.911 283.16 12.911 283.16 28.724C283.16 36.631 277.909 41.882 269.943 41.882 261.977 41.882 256.725 36.631 256.725 28.724L256.725 12.911 263.924 12.911 263.924 28.193zM318.795.578L318.795 41.174 311.537 41.174 311.537 38.106C309.472 40.525 306.58 42.001 302.922 42.001 295.429 42.001 289.351 35.864 289.351 27.072 289.351 18.516 295.075 12.085 302.922 12.085 306.64 12.085 309.53 13.442 311.537 15.743L311.537.578 318.795.578zM311.537 27.013C311.537 22.47 308.409 18.87 304.102 18.87 299.735 18.87 296.549 22.47 296.549 27.013 296.549 31.556 299.735 35.215 304.102 35.215 308.409 35.215 311.537 31.556 311.537 27.013z"/>
+    </g>
+    <polygon fill="#AB2B4A" points="100.423 29.134 100.423 86.868 89.721 73.062 83.76 58.003 83.756 58.003 89.418 42.731"/><polygon fill="#E87A68" points=".429 29.134 .429 86.868 9.889 73.481 17.092 58.003 17.096 58.003 9.773 43.319"/><polygon fill="#D74D4E" points="83.756 58.003 52.241 60.003 17.092 58.003 31.76 29.134 50.426 .269 70.722 31.961"/><polygon fill="#BD3246" points="100.423 29.134 83.756 58.003 50.426 .269"/><polygon fill="#F19175" points="50.426 .269 17.092 58.003 .425 29.134"/><polygon fill="#CF3942" points="83.756 58.003 72.365 82.931 50.426 115.737 27.849 81.83 17.092 58.003"/><polygon fill="#E0625B" points="50.426 115.737 .425 86.868 17.092 58.003"/><polygon fill="#9A244F" points="50.422 115.737 100.423 86.868 83.756 58.003"/>
+  </g>
+</svg>
+        <p>European PaaS, fully managed. Deploy with git, the platform does the rest.</p>
+        <div class="cc-trust"><span>ISO 27001</span><span>HDS</span><span>HOSTED IN FRANCE</span></div>
+      </div>
+      <div>
+        <h4>Documentation</h4>
+        <ul>
+          <li><a href="https://www.clever.cloud/developers/doc/deploy/applications/java/java-maven/" target="_blank" rel="noopener">Java and Maven runtime</a></li>
+          <li><a href="https://www.clever.cloud/developers/doc/deploy/databases/mongodb/" target="_blank" rel="noopener">MongoDB add-on</a></li>
+          <li><a href="https://console.clever-cloud.com" target="_blank" rel="noopener">Clever Cloud Console</a></li>
+        </ul>
+      </div>
+      <div class="obs-cert">
+        <a class="obs-cert__badge" href="https://academy.clever.cloud/" target="_blank" rel="noopener" aria-label="Clever Cloud Academy certification">
+<svg class="cc-cert__badge" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" role="img" aria-label="Badge Certification Clever Cloud">
+  <defs>
+    <linearGradient id="ccBadgeGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f57461"/><stop offset="0.5" stop-color="#cb1c42"/><stop offset="1" stop-color="#a51050"/>
+    </linearGradient>
+    <path id="ccBadgeRing" d="M110,110 m-84,0 a84,84 0 1,1 168,0 a84,84 0 1,1 -168,0"/>
+  </defs>
+  <circle cx="110" cy="110" r="107" fill="#0e1124" stroke="url(#ccBadgeGrad)" stroke-width="4"/>
+  <circle cx="110" cy="110" r="97" fill="none" stroke="rgba(222,221,238,0.2)" stroke-width="1" stroke-dasharray="2 5"/>
+  <circle cx="110" cy="110" r="66" fill="#1c2045" stroke="rgba(222,221,238,0.16)"/>
+  <text font-family="'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif" font-size="12.5" font-weight="700" letter-spacing="3" fill="#deddee" textLength="524" lengthAdjust="spacing">
+    <textPath href="#ccBadgeRing" textLength="524" lengthAdjust="spacing">CERTIFIED · CLEVER CLOUD · ACADEMY · CERTIFIED · CLEVER CLOUD · ACADEMY · </textPath>
+  </text>
+  <g transform="translate(110 103) scale(0.6) translate(-50.4 -58)">
+    <polygon fill="#AB2B4A" points="100.423 29.134 100.423 86.868 89.721 73.062 83.76 58.003 83.756 58.003 89.418 42.731"/><polygon fill="#E87A68" points=".429 29.134 .429 86.868 9.889 73.481 17.092 58.003 17.096 58.003 9.773 43.319"/><polygon fill="#D74D4E" points="83.756 58.003 52.241 60.003 17.092 58.003 31.76 29.134 50.426 .269 70.722 31.961"/><polygon fill="#BD3246" points="100.423 29.134 83.756 58.003 50.426 .269"/><polygon fill="#F19175" points="50.426 .269 17.092 58.003 .425 29.134"/><polygon fill="#CF3942" points="83.756 58.003 72.365 82.931 50.426 115.737 27.849 81.83 17.092 58.003"/><polygon fill="#E0625B" points="50.426 115.737 .425 86.868 17.092 58.003"/><polygon fill="#9A244F" points="50.422 115.737 100.423 86.868 83.756 58.003"/>
+  </g>
+  <circle cx="110" cy="158" r="10" fill="url(#ccBadgeGrad)"/>
+  <path d="M105 158l3.5 3.5 6.5-6.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+        </a>
+        <div>
+          <h4>Clever Cloud Academy</h4>
+          <ul>
+            <li><a class="is-cert" href="https://academy.clever.cloud/" target="_blank" rel="noopener">Get certified</a></li>
+            <li><a href="https://www.clever.cloud" target="_blank" rel="noopener">clever.cloud</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="cc-footer__bottom"><span>Demo built by the Clever Cloud presales team. Star data: public-domain catalogue values.</span><span>© 2026 Clever Cloud</span></div>
+  </div>
+</footer>
+
+<dialog class="sheet" id="sheet" aria-labelledby="sheet-name">
+  <div class="sheet__inner">
+    <button class="sheet__close" id="sheet-close" type="button" aria-label="Close">×</button>
+    <section class="sheet__human" id="sheet-human"></section>
+    <section class="sheet__raw">
+      <p class="sheet__raw-head"><span>As stored in MongoDB</span> <code id="sheet-ns">observatory.sky</code></p>
+      <pre class="obs-code sheet__doc" id="sheet-doc"></pre>
+      <div id="sheet-lookup"></div>
+    </section>
+  </div>
+</dialog>
+
+</body>
+</html>

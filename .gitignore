@@ -1,0 +1,19 @@
+# Build output
+target/
+*.class
+
+# Dependencies and tool caches
+.mvn/wrapper/maven-wrapper.jar
+node_modules
+
+# Local configuration and secrets
+.env*
+!.env.example
+.clever.json
+
+# IDE and OS files
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
