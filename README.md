@@ -6,6 +6,8 @@
 
 **Run it yourself.** The hosted demo was taken down after the presales review (November 2026). The steps in [Deploy on Clever Cloud](#deploy-on-clever-cloud) recreate it from scratch in about 15 minutes (the Maven build runs the tests, and the MongoDB add-on takes a few minutes to provision).
 
+**Get certified.** This demo runs on Clever Cloud. To deploy your own apps the same way, get certified at the [Clever Cloud Academy](https://academy.clever.cloud/).
+
 ---
 
 ## What MongoDB does in this demo
